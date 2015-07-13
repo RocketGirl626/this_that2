@@ -1,0 +1,22 @@
+<h1>This or That?</h1>
+<p><%= link_to "New Question", new_question_path %></p>
+
+<% @questions.each do |question| %>
+	<div class="post_wrapper">
+		<h2 class="title"><%= question.option1 %></h2>
+    <button>Vote Option 1</button>
+    <h2 class="title"><%= question.option2 %></h2>
+    <button>Vote Option 2</button>
+		<p class="date"><%= question.created_at.strftime("%B %d, %Y") %></p>
+
+    <div id="comments">
+      <% question.comments.each do |comment| %>
+        <h3><%= comment.body %></h3>
+      <% end %>
+    </div>
+
+
+
+	</div>
+
+<% end %>

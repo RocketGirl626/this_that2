@@ -1,0 +1,28 @@
+<%= form_for @question do |f| %>
+
+<% if @question.errors.any? %>
+	<div id="errors">
+		<h2><%= pluralize(@question.errors.count, "error") %> prevented this question from saving</h2>
+		<ul>
+			<% @question.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+<p>
+	<%= f.label :option1 %><br>
+	<%= f.text_field :option1 %><br>
+</p>
+
+<p>
+	<%= f.label :option2 %><br>
+	<%= f.text_field :option2 %><br>
+</p>
+
+<p>
+	<%= f.submit %>
+</p>
+
+<% end %>

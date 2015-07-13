@@ -8,6 +8,8 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'devise', '~> 3.5.1'
 
 group :development do
   gem 'byebug'

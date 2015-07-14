@@ -1,6 +1,7 @@
 <h1>This or That?</h1>
 <p><%= link_to "New Question", new_question_path, id: "new_link", remote: true %></p>
 
-<div id="container_questions">
-  <%= render @questions %>
-</div>
+<% @questions.each do |question| %>
+
+
+<% end %>

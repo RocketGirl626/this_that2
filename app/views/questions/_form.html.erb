@@ -1,4 +1,4 @@
-<%= form_for @question do |f| %>
+<%= form_for @question, remote: true do |f| %>
 
 <% if @question.errors.any? %>
 	<div id="errors">
@@ -13,16 +13,17 @@
 
 <p>
 	<%= f.label :option1 %><br>
-	<%= f.text_field :option1 %><br>
+	<%= f.text_field :option1, class: "form-control question_option1" %><br>
 </p>
 
 <p>
 	<%= f.label :option2 %><br>
-	<%= f.text_field :option2 %><br>
+	<%= f.text_field :option2, class: "form-control question_option2" %><br>
 </p>
 
 <p>
 	<%= f.submit %>
 </p>
+
 
 <% end %>

@@ -3,7 +3,8 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :upvote, :downvote]
 
   def index
-    @questions = Question.all.order('created_at DESC')
+    @questions = Question.all
+    @question = Question.new
   end
 
   def new
@@ -13,11 +14,17 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    if @question.save
-      redirect_to @question
-    else
-      render 'new'
-    end
+    @comment = Comment.new
+
+      respond_to do |format|
+        if @question.save
+          format.html { redirect_to @question, notice: 'Question was created.' }
+          format.js
+        else
+          format.html { render :new }
+          format.js
+        end
+      end
   end
 
   def show

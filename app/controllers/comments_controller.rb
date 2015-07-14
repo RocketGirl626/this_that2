@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
 
   def new
+    @question = Question.find(params[:question_id])
     @comment = Comment.new
+
   end
 
   def create

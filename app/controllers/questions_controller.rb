@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_question, only: [:show, :upvote]
+  before_action :set_question, only: [:show, :upvote, :downvote]
 
   def index
     @questions = Question.all.order('created_at DESC')
@@ -27,6 +27,11 @@ class QuestionsController < ApplicationController
 
   def upvote
     @question.upvote_from current_user
+    redirect_to questions_path
+  end
+
+  def downvote
+    @question.downvote_from current_user
     redirect_to questions_path
   end
 

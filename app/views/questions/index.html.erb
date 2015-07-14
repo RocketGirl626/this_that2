@@ -4,9 +4,24 @@
 <% @questions.each do |question| %>
 	<div class="post_wrapper">
 		<h2 class="title"><%= question.option1 %></h2>
-    <button>Vote Option 1</button>
+
+    <%= link_to like_question_path(question), class: 'like', method: :put do %>
+      <button type='button' class='btn btn-info' aria-label='Left Align'>
+        <span class='glyphicon glyphicon-thumps-up glyphicon-align-center' aria-hidden='true'></span>
+        <span class='badge'><%= question.get_upvotes.size %>
+      </button>
+    <% end %>
+
+
     <h2 class="title"><%= question.option2 %></h2>
-    <button>Vote Option 2</button>
+
+    <%= link_to like_question_path(question), class: 'like', method: :put do %>
+      <button type='button' class='btn btn-info' aria-label='Left Align'>
+        <span class='glyphicon glyphicon-thumps-up glyphicon-align-center' aria-hidden='true'></span>
+        <span class='badge'><%= question.get_downvotes.size %>
+      </button>
+    <% end %>
+
 		<p class="date"><%= question.created_at.strftime("%B %d, %Y") %></p>
 
     <div id="comments">

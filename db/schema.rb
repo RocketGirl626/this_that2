@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713233426) do
+ActiveRecord::Schema.define(version: 20150714181302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,20 @@ ActiveRecord::Schema.define(version: 20150713233426) do
     t.integer  "total_vote"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
+
+  add_index "questions", ["cached_votes_score"], name: "index_questions_on_cached_votes_score", using: :btree
+  add_index "questions", ["cached_votes_total"], name: "index_questions_on_cached_votes_total", using: :btree
+  add_index "questions", ["cached_votes_up"], name: "index_questions_on_cached_votes_up", using: :btree
+  add_index "questions", ["cached_weighted_average"], name: "index_questions_on_cached_weighted_average", using: :btree
+  add_index "questions", ["cached_weighted_score"], name: "index_questions_on_cached_weighted_score", using: :btree
+  add_index "questions", ["cached_weighted_total"], name: "index_questions_on_cached_weighted_total", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
